@@ -6,36 +6,39 @@ public class PeeSystem : MonoBehaviour
 {
     public ParticleSystem peeStream;
     public Transform toiletTf;
-
-    public bool once = true; //only pee once
+    
+    public bool peeOnce = true; 
 
     [Range(0f, 4f)]
-    public float radius = 2f; //size of trigger zone
+    public float triggerRadius = 2f; 
 
     private void Update()
     {
-        Vector3 playerPos = transform.position;          //get rid of repeated code
-        Vector3 toiletOrigin = toiletTf.position;
+        float dist = getDistanceFromToilet();
 
-        float dist = Vector3.Distance(playerPos, toiletOrigin);
-
-        if (dist < radius && once)
+        if (dist < triggerRadius && peeOnce)
         {
             peeStream.Play();
-            once = false;
+            peeOnce = false;
         }
     }
-    private void OnDrawGizmos() //visual toilet zone
+    private void OnDrawGizmos()
+    {
+        float dist = getDistanceFromToilet();
+        bool isInside = dist < triggerRadius;
+
+        Gizmos.color = isInside ? Color.green : Color.red;
+
+        Gizmos.DrawWireSphere(toiletOrigin, 2f);
+    }
+
+    private float getDistanceFromToilet()
     {
         Vector3 playerPos = transform.position;
         Vector3 toiletOrigin = toiletTf.position;
 
         float dist = Vector3.Distance(playerPos, toiletOrigin);
-        bool isInside = dist < radius;
 
-        Gizmos.color = isInside ? Color.green : Color.red;
-
-        Gizmos.DrawWireSphere(toiletOrigin, 2f);
-
-    }
+        return dist;
+    }   
 }
