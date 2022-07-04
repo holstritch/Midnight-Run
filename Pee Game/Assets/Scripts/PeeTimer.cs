@@ -7,11 +7,11 @@ public class PeeTimer : MonoBehaviour
 {
     public Slider timerSlider;
     public float gameTime;
-    private bool stopTimer;
+    private bool _stopTimer;
 
     private void Start()
     {
-        stopTimer = false;
+        _stopTimer = false;
         timerSlider.maxValue = gameTime;
         timerSlider.value = gameTime;
     }

@@ -4,20 +4,23 @@ using UnityEngine;
 
 public class CopyLimb : MonoBehaviour
 {
+    [SerializeField]
     public Transform targetLimb;
-    public ConfigurableJoint m_ConfigurableJoint;
+
+    [SerializeField]
+    public ConfigurableJoint configurableJoint;
 
     Quaternion targetInitialRotation;
 
     void Start()
     {
-        this.m_ConfigurableJoint = this.GetComponent<ConfigurableJoint>();
+        this.configurableJoint = this.GetComponent<ConfigurableJoint>();
         this.targetInitialRotation = this.targetLimb.transform.localRotation;
     }
 
     private void FixedUpdate()
     {
-        this.m_ConfigurableJoint.targetRotation = CopyRotation();
+        this.configurableJoint.targetRotation = CopyRotation();
     }
 
     private Quaternion CopyRotation()
