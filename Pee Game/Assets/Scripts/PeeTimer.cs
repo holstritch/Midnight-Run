@@ -25,10 +25,10 @@ public class PeeTimer : MonoBehaviour
 
         if (time <= 0)
         {
-            stopTimer = true;
+            _stopTimer = true;
         }
 
-        if (stopTimer == false)
+        if (_stopTimer == false)
         {
             timerSlider.value = time;
         }
