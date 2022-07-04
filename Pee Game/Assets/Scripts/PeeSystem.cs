@@ -29,7 +29,7 @@ public class PeeSystem : MonoBehaviour
 
         Gizmos.color = isInside ? Color.green : Color.red;
 
-        Gizmos.DrawWireSphere(toiletOrigin, 2f);
+        Gizmos.DrawWireSphere(toiletTf.position, 2f);
     }
 
     private float getDistanceFromToilet()
